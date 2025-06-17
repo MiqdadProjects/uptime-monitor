@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://www.google.com",
+    "status": "up",
+    "code": 200,
+    "response_time": 0.6
+  },
+  {
+    "url": "https://www.github.com",
+    "status": "up",
+    "code": 200,
+    "response_time": 0.7
+  },
+  {
+    "url": "https://www.youtube.com",
+    "status": "up",
+    "code": 200,
+    "response_time": 0.67
+  },
+  {
+    "url": "http://example.invalid",
+    "status": "down",
+    "code": null,
+    "response_time": null
+  }
+]
