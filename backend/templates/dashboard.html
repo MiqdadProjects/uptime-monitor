@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uptime Monitor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Website Uptime Dashboard</h1>
+    <table>
+        <tr><th>URL</th><th>Status</th><th>HTTP Code</th><th>Response Time</th></tr>
+        {% for site in sites %}
+        <tr>
+            <td>{{ site.url }}</td>
+            <td>{{ site.status }}</td>
+            <td>{{ site.code }}</td>
+            <td>{{ site.response_time }}s</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
