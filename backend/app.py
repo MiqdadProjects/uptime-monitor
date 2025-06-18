@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import json
+import json 
 from monitor import check_all_sites
 
 app = Flask(__name__)

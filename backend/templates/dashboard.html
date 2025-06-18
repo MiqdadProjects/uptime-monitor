@@ -1,21 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Uptime Monitor</title>
-    <link rel="stylesheet" href="/static/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uptime Monitor Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script>
+    // Simple loading spinner toggle
+    document.addEventListener("DOMContentLoaded", function () {
+      const spinner = document.getElementById("loading-spinner");
+      spinner.style.display = "none";
+    });
+  </script>
 </head>
 <body>
+  <header>
     <h1>Website Uptime Dashboard</h1>
-    <table>
-        <tr><th>URL</th><th>Status</th><th>HTTP Code</th><th>Response Time</th></tr>
+    <nav>
+      <a href="/">Home</a>
+      <!-- Add more nav links if needed -->
+    </nav>
+  </header>
+
+  <main>
+    <div id="loading-spinner" class="spinner"></div>
+    <p class="last-updated">Last updated: {{ last_updated or "N/A" }}</p>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Status</th>
+          <th>HTTP Code</th>
+          <th>Response Time</th>
+        </tr>
+      </thead>
+      <tbody>
         {% for site in sites %}
         <tr>
-            <td>{{ site.url }}</td>
-            <td>{{ site.status }}</td>
-            <td>{{ site.code }}</td>
-            <td>{{ site.response_time }}s</td>
+          <td>{{ site.url }}</td>
+          <td>
+            <span class="status-indicator {{ 'up' if site.status == 'up' else 'down' }}">
+              {{ site.status | capitalize }}
+            </span>
+          </td>
+          <td>{{ site.code or '-' }}</td>
+          <td>{{ site.response_time if site.response_time is not none else '-' }}s</td>
         </tr>
         {% endfor %}
+      </tbody>
     </table>
+  </main>
+
+  <footer>
+    <p>© 2025 Uptime Monitor. All rights reserved.</p>
+  </footer>
 </body>
 </html>
