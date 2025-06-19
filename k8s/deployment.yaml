@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-monitor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uptime-monitor
+  template:
+    metadata:
+      labels:
+        app: uptime-monitor
+    spec:
+      containers:
+      - name: uptime-monitor
+        image: uptime-monitor:latest
+        # Prevent Kubernetes from pulling the image from a remote registry.
+        # This ensures the pod uses the local image built inside Minikube's Docker daemon.
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
