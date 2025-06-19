@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: uptime-monitor-service
+spec:
+  type: NodePort
+  selector:
+    app: uptime-monitor
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 30007
